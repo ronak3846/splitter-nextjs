@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 import { showSuccess, showError } from "../utils/toast";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -122,9 +121,7 @@ export default function LoginPage() {
             Signup
           </span>
         </p>
-        <div className="flex items-center">
-          <ThemeToggle />
-        </div>
+        
       </motion.div>
     </div>
   );

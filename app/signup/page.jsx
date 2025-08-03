@@ -9,7 +9,7 @@ import { User, Mail, Lock, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 import { showSuccess, showError } from "../utils/toast";
-import { ThemeToggle } from "@/components/theme-toggle";
+
 
 export default function SignupPage() {
   const router = useRouter();
@@ -162,7 +162,6 @@ export default function SignupPage() {
             Login
           </span>
         </p>
-        <ThemeToggle />
       </motion.div>
     </div>
   );
