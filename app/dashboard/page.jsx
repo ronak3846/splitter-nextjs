@@ -1,131 +1,3 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import Link from "next/link";
-// import { motion } from "framer-motion";
-// import { Button } from "@/components/ui/button";
-// import { Card, CardContent } from "@/components/ui/card";
-
-// export default function DashboardPage() {
-//   const router = useRouter();
-//   const [user, setUser] = useState(null);
-//   const [groups, setGroups] = useState([]);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-
-//     if (!token) {
-//       router.push("/login");
-//       return;
-//     }
-
-//     const fetchUserAndGroups = async () => {
-//       const res = await fetch("/api/auth/me", {
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-
-//       const data = await res.json();
-//       if (!res.ok) {
-//         localStorage.removeItem("token");
-//         router.push("/login");
-//         return;
-//       }
-
-//       setUser(data.user);
-
-//       const groupRes = await fetch("/api/groups", {
-//         method: "GET",
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-
-//       const groupData = await groupRes.json();
-//       if (groupRes.ok) {
-//         setGroups(groupData.groups || []);
-//       }
-//     };
-
-//     fetchUserAndGroups();
-//   }, [router]);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("token");
-//     router.push("/login");
-//   };
-
-//   if (!user) return <p className="text-center mt-10">Loading...</p>;
-
-//   return (
-//     <div className="max-w-4xl mx-auto mt-16 px-4">
-//       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-//         <div>
-//           <h1 className="text-3xl font-bold">Welcome, {user.name} 👋</h1>
-//           <p className="text-muted-foreground text-sm">Email: {user.email}</p>
-//         </div>
-//         <Button variant="destructive" onClick={handleLogout}>
-//           Logout
-//         </Button>
-//       </div>
-
-//       <div className="mb-8">
-//         <Link href="/dashboard/create-group">
-//           <Button size="lg">+ Create New Group</Button>
-//         </Link>
-//       </div>
-
-//       <div>
-//         <h2 className="text-2xl font-semibold mb-4">Your Groups</h2>
-
-//         {groups.length === 0 ? (
-//           <p className="text-muted-foreground">
-//             No groups found. Start by creating one.
-//           </p>
-//         ) : (
-//           <div className="grid sm:grid-cols-2 gap-4">
-//             {groups.map((group) => (
-//               <motion.div
-//                 key={group._id}
-//                 whileHover={{ scale: 1.02 }}
-//                 transition={{ type: "spring", stiffness: 300 }}
-//               >
-//                 <Card className="rounded-2xl shadow-sm">
-//                   <CardContent className="p-4 space-y-2">
-//                     <h3 className="text-lg font-semibold">{group.name}</h3>
-//                     <p className="text-sm text-muted-foreground">
-//                       Members: {group.members.length}
-//                     </p>
-//                     <div className="flex flex-wrap gap-2 pt-2">
-//                       <Link href={`/dashboard/groups/${group._id}`}>
-//                         <Button variant="outline" size="sm">
-//                           View
-//                         </Button>
-//                       </Link>
-//                       <Link href={`/dashboard/groups/${group._id}/add-expense`}>
-//                         <Button size="sm">Add Expense</Button>
-//                       </Link>
-//                       <Button
-//                         size="sm"
-//                         variant="secondary"
-//                         onClick={() =>
-//                           router.push(`/dashboard/groups/${group._id}/edit`)
-//                         }
-//                       >
-//                         Edit
-//                       </Button>
-//                     </div>
-//                   </CardContent>
-//                 </Card>
-//               </motion.div>
-//             ))}
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -179,12 +51,7 @@ export default function DashboardPage() {
 
   
 
-  const totalExpenses = groups.reduce((acc, group) => {
-    return (
-      acc +
-      (group.expenses?.reduce((sum, e) => sum + Number(e.amount || 0), 0) || 0)
-    );
-  }, 0);
+  
 
   const totalMembers = new Set(
     groups.flatMap((g) => g.members.map((m) => m._id))
@@ -214,7 +81,6 @@ export default function DashboardPage() {
         <CardContent className="flex justify-between flex-wrap gap-4 text-sm p-4">
           <span>📌 Total Groups: {groups.length}</span>
           <span>👥 Total Unique Members: {totalMembers}</span>
-          <span>💰 Total Expenses: ₹{totalExpenses}</span>
         </CardContent>
       </Card>
       
@@ -259,10 +125,6 @@ export default function DashboardPage() {
                   <CardContent className="p-4 space-y-2">
                     <h3 className="text-lg font-semibold">{group.name}</h3>
                     <p className="text-sm">👥 {group.members.length} Members</p>
-                    <p className="text-sm">
-                      💸 {group.expenses?.length || 0} Expenses
-                    </p>
-                    <p className="text-sm">📊 Total Spent: ₹{groupTotal}</p>
 
                     <div className="flex flex-wrap gap-2 pt-2">
                       <Link href={`/dashboard/groups/${group._id}`}>
