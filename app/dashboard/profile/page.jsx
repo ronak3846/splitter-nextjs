@@ -16,7 +16,7 @@ export default function ProfilePage() {
         setError("No token found. Please login.");
         return;
       }
-console.log(token);
+
       const res = await fetch("/api/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,7 +58,7 @@ console.log(res);
       </div>
 
       <div className="mt-8 space-y-2">
-        <Button className="w-full" onClick={() => router.push("/edit-user")}>
+        <Button className="w-full" onClick={() => router.push("/dashboard/profile/edit-user")}>
           Edit Profile
         </Button>
       </div>
