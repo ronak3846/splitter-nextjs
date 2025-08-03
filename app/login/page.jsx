@@ -1,72 +1,4 @@
-// "use client";
 
-// import { useState } from "react";
-// import { Input } from "@/components/ui/input";
-// import { Button } from "@/components/ui/button";
-// import { Label } from "@/components/ui/label";
-// import { useRouter } from "next/navigation";
-
-// export default function LoginPage() {
-//   const router = useRouter();
-//   const [form, setForm] = useState({ email: "", password: "" });
-//   const [error, setError] = useState("");
-
-//   const handleChange = (e) => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     const res = await fetch("/api/auth/login", {
-//       method: "POST",
-//       body: JSON.stringify(form),
-//     });
-
-//     const data = await res.json();
-
-//     if (!res.ok) {
-//       setError(data.error);
-//       return;
-//     }
-
-//     // Store token in localStorage (or cookie)
-//     localStorage.setItem("token", data.token);
-
-//     router.push("/dashboard");
-//   };
-
-//   return (
-//     <div className="max-w-md mx-auto mt-16">
-//       <h2 className="text-2xl font-bold mb-6">Login</h2>
-//       {error && <p className="text-red-500 mb-4">{error}</p>}
-//       <form onSubmit={handleSubmit} className="space-y-4">
-//         <div>
-//           <Label htmlFor="email">Email</Label>
-//           <Input
-//             id="email"
-//             name="email"
-//             value={form.email}
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div>
-//           <Label htmlFor="password">Password</Label>
-//           <Input
-//             id="password"
-//             name="password"
-//             type="password"
-//             value={form.password}
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <Button type="submit" className="w-full">
-//           Log In
-//         </Button>
-//       </form>
-//     </div>
-//   );
-// }
 
 "use client";
 
@@ -78,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 import { showSuccess, showError } from "../utils/toast";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -119,7 +52,7 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white/70 backdrop-blur-md rounded-xl shadow-xl p-8 w-full max-w-md"
+        className="bg-white/70 dark:bg-black/70 backdrop-blur-md rounded-xl shadow-xl p-8 w-full max-w-md"
       >
         <h2 className="text-3xl font-bold text-center text-primary mb-6">
           Welcome Back 👋
@@ -189,6 +122,9 @@ export default function LoginPage() {
             Signup
           </span>
         </p>
+        <div className="flex items-center">
+          <ThemeToggle />
+        </div>
       </motion.div>
     </div>
   );

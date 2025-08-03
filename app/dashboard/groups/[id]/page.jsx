@@ -722,7 +722,7 @@ export default function GroupDetailPage() {
                 >
                   <div>
                     <p className="font-medium">
-                      💸 {expense.title} — ₹{expense.amount}
+                      💸 {expense.title} — ₹{expense.amount.toFixed(2)}
                     </p>
                     <p className="text-sm text-muted-foreground">
                       Paid by: {expense.paidBy?.name || "Unknown"}
@@ -772,8 +772,9 @@ export default function GroupDetailPage() {
             <ul className="grid gap-2 text-sm">
               {Object.entries(summary).map(([id, member]) => (
                 <li key={id}>
-                  <strong>{member.name}</strong> → Paid: ₹{member.paid}, Owes: ₹
-                  {member.owes}, Balance:{" "}
+                  <strong>{member.name}</strong> → Paid: ₹
+                  {member.paid.toFixed(2)}, Owes: ₹{member.owes.toFixed(2)},
+                  Balance:{" "}
                   <span
                     className={
                       member.balance >= 0 ? "text-green-600" : "text-red-600"
