@@ -780,7 +780,7 @@ export default function GroupDetailPage() {
                       member.balance >= 0 ? "text-green-600" : "text-red-600"
                     }
                   >
-                    ₹{member.balance}
+                    ₹{member.balance.toFixed(2)}
                   </span>
                 </li>
               ))}

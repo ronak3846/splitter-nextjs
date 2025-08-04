@@ -19,6 +19,7 @@ export default function Navbar() {
   const links = [
     { name: "Home", href: "/dashboard" },
     { name: "Groups", href: "/dashboard/groups" },
+    { name: "Personal Expenses", href: "/dashboard/personal-expenses" },
     { name: "Profile", href: "/dashboard/profile" },
   ];
 
